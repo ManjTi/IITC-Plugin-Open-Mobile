@@ -6,7 +6,6 @@
 // @version 1.0.1
 // @namespace https://github.com/ManjTi/IITC-Plugin-Open-Mobile/
 // @description Open selected portal in scanner (mobile only)
-// @include https://intel.ingress.com/intel*
 // @match https://intel.ingress.com/intel*
 // @grant none
 // ==/UserScript==

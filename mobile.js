@@ -6,6 +6,7 @@
 // @version 1.0.1
 // @namespace https://github.com/ManjTi/IITC-Plugin-Open-Mobile/
 // @description Open selected portal in scanner (mobile only)
+// @include https://intel.ingress.com/intel*
 // @match https://intel.ingress.com/intel*
 // @grant none
 // ==/UserScript==
@@ -35,9 +36,7 @@ function wrapper(plugin_info) {
         window.addHook('portalSelected', updateMobile);
 
         //add css
-        var css = document.createElement('style');
-        css.type = 'text/css';
-        css.innerHTML = `
+        $('<style>').prop('type', 'text/css').html(`
         .mobilelink {
             margin: -30px 0px 0px calc(50% - 112px);
             position: fixed;
@@ -51,8 +50,8 @@ function wrapper(plugin_info) {
             display: block;
             width: fit-content;
             text-align: center;
-        }`
-        document.head.appendChild(css);
+        }`).appendTo('head');
+        
 
     }
 

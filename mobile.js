@@ -33,7 +33,7 @@ function wrapper(plugin_info) {
 
     // The entry point for this plugin.
     function setup() {
-        window.addHook('portalSelected', updateMobile);
+        
 
         //add css
         $('<style>').prop('type', 'text/css').html(`
@@ -52,7 +52,7 @@ function wrapper(plugin_info) {
             text-align: center;
         }`).appendTo('head');
         
-
+        window.addHook('portalSelected', updateMobile);
     }
 
     //link structure https://link.ingress.com/?link=https://intel.ingress.com/portal/guid'

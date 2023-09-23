@@ -58,11 +58,7 @@ function wrapper(plugin_info) {
         `).appendTo('head');
         
         window.addHook('portalSelected', updateMobile);
-        //when holding on button, hide before clicking on a new portal
-        window.addHook('portalDetailsUpdated', function () {
-            $("#updatestatus").find(".mobilelink").remove();
-        }
-        );
+    
     }
 
     //link structure https://link.ingress.com/?link=https://intel.ingress.com/portal/guid'
@@ -76,7 +72,7 @@ function wrapper(plugin_info) {
         //add before the first child
         $("#updatestatus").prepend('<div class="mobilelink">' + html + '</div>');
         //add animation once
-        $(".mobilelink").addClass("animated pulse");
+        $(".mobilelink").addClass("animated pulse 1s");
 
     }
 

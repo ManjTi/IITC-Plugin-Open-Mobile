@@ -1,37 +1,25 @@
 // ==UserScript==
-// @author              tunmenee
+// @author              tunmenee on https://vim.li
 // @id                  mobile-open
-// @name                Open In Scanner
+// @name                Open Portal In Scanner
 // @category Misc
-// @version 1.0.1
+// @version 1.0.2
 // @namespace https://github.com/ManjTi/IITC-Plugin-Open-Mobile/
 // @description Open selected portal in scanner (mobile only)
+// @updateURL      https://raw.githubusercontent.com/ManjTi/IITC-Plugin-Open-Mobile/main/mobile.meta.js
+// @downloadURL    https://raw.githubusercontent.com/ManjTi/IITC-Plugin-Open-Mobile/main/mobile.user.js
+// @runAt          document-end
 // @include https://intel.ingress.com/intel*
 // @match https://intel.ingress.com/intel*
 // @grant none
 // ==/UserScript==
 
-// Wrapper function that will be stringified and injected
-// into the document. Because of this, normal closure rules
-// do not apply here.
-
-
 function wrapper(plugin_info) {
-
-    // Make sure that window.plugin exists. IITC defines it as a no-op function,
-    // and other plugins assume the same.
     if (typeof window.plugin !== 'function') window.plugin = function () { };
-
-    // Name of the IITC build for first-party plugins
     plugin_info.buildName = 'mobile-open';
-
-    // Datetime-derived version of the plugin
     plugin_info.dateTimeVersion = '1';
-
-    // ID/name of the plugin
     plugin_info.pluginId = 'mobile-open';
 
-    // The entry point for this plugin.
     function setup() {
         
 
@@ -53,6 +41,11 @@ function wrapper(plugin_info) {
         }`).appendTo('head');
         
         window.addHook('portalSelected', updateMobile);
+        //when holding on button, hide before clicking on a new portal
+        window.addHook('portalDetailsUpdated', function () {
+            $("#updatestatus").find(".mobilelink").remove();
+        }
+        );
     }
 
     //link structure https://link.ingress.com/?link=https://intel.ingress.com/portal/guid'

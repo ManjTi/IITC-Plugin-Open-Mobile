@@ -38,7 +38,24 @@ function wrapper(plugin_info) {
             display: block;
             width: fit-content;
             text-align: center;
-        }`).appendTo('head');
+        }
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(148, 48, 233, 0.4);
+            }
+
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 10px rgba(148, 48, 233, 0);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(148, 48, 233, 0);
+            }
+        }
+        `).appendTo('head');
         
         window.addHook('portalSelected', updateMobile);
         //when holding on button, hide before clicking on a new portal
@@ -58,6 +75,8 @@ function wrapper(plugin_info) {
         $("#updatestatus").find(".mobilelink").remove();
         //add before the first child
         $("#updatestatus").prepend('<div class="mobilelink">' + html + '</div>');
+        //add animation once
+        $(".mobilelink").addClass("animated pulse");
 
     }
 
